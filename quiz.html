@@ -200,7 +200,8 @@
 【現在の問題】: ${currentQuestion.question}
 【正解の根拠】: ${currentQuestion.explanation || "未設定"}
 ユーザーからの質問: "${question}"
-回答ルール: 正解は言わず、数学的ヒントを提示してください。読点で適宜改行し、数式は LaTeX \\( ... \\) で書いてください。`;
+回答ルール: 正解は言わず、数学的ヒントを提示してください。
+回答は読みやすいMarkdown形式で行い、重要な数式は 独立した行（Display Mode） で記述してください。また、一行が長くなりすぎないよう適切に改行してください。`;
 
     try {
         // Supabase Edge Functionを呼び出し（APIキーは不要、URLはあなたのプロジェクトのもの）
