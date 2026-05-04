@@ -26,7 +26,8 @@ const menuData = [
         hasSubMenu: true,
         subItems: [
             { name: "二項分布", genre: "binomial" },
-            { name: "幾何分布", genre: "geo" }   
+            { name: "幾何分布", genre: "geo" },
+            { name: "t分布", genre: "t-dist"} 
         ]
     }
 ];
