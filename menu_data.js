@@ -27,7 +27,10 @@ const menuData = [
         subItems: [
             { name: "二項分布", genre: "binomial" },
             { name: "幾何分布", genre: "geo" },
-            { name: "正規分布", genre: "normal" }
+            { name: "正規分布", genre: "normal" },
+            { name: "t分布", genre: "t_dist" },
+            { name: "カイ二乗分布", genre: "chi_squared" },
+            { name: "F分布", genre: "f_dist" }
         ]
     }
 ];
