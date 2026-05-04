@@ -27,19 +27,15 @@ const allQuestions = [
     type: "選択式",
     question: `
       確率変数 \\(X_1, X_2\\) は独立に平均 \\(\\mu\\)、分散 \\(\\sigma^2\\) の分布に従うとする。<br>
-      次の推定量のうち、\\(\\mu\\) の不偏推定量であって、分散が最小である推定量を選べ。<br>
-      ① \\(\\frac{1}{3}X_1 + \\frac{2}{3}X_2\\)<br>
-      ② \\(\\frac{1}{4}X_1 + \\frac{3}{4}X_2\\)<br>
-      ③ \\(\\frac{1}{2}X_1 + \\frac{1}{2}X_2\\)<br>
-      ④ \\(X_1\\)
+      次の推定量のうち、\\(\\mu\\) の不偏推定量であって、分散が最小である推定量を選べ。修正<br>
     `,
-    choices: ["①", "②", "③", "④"],
-    answer: "③",
+    choices: ["① \\(\\frac{1}{3}X_1 + \\frac{2}{3}X_2\\)", "② \\(\\frac{1}{4}X_1 + \\frac{3}{4}X_2\\)", "③ \\(\\frac{1}{2}X_1 + \\frac{1}{2}X_2\\)", "④ \\(X_1\\)"],
+    answer: "③ \\(\\frac{1}{2}X_1 + \\frac{1}{2}X_2\\)",
     explanation: `
       【解説】<br>
       まず、与えられた選択肢はすべて係数の和が1（\\(w_1 + w_2 = 1\\)）であるため、すべて \\(\\mu\\) の不偏推定量です。<br><br>
       不偏推定量 \\(w_1 X_1 + w_2 X_2\\) の分散は、独立性より次のように計算できます：<br>
-      \\(Var(w_1 X_1 + w_2 X_2) = w_1^2 \\sigma^2 + w_2^2 \\sigma^2 = (w_1^2 + w_2^2) \\sigma^2\\)<br><br>
+      \\(\\mathrm{Var}[w_1 X_1 + w_2 X_2] = w_1^2 \\sigma^2 + w_2^2 \\sigma^2 = (w_1^2 + w_2^2) \\sigma^2\\)<br><br>
       この \\(w_1^2 + w_2^2\\) を、\\(w_1 + w_2 = 1\\) という制約の下で最小にするのは \\(w_1 = w_2 = 1/2\\) のときです。<br>
       したがって、標本平均である ③ が最も分散が小さくなります（最良不偏推定量）。 `
   },
@@ -61,9 +57,9 @@ const allQuestions = [
     answer: "3. ①, ③, ④",
     explanation: `
       期待値が \\(\\mu\\) に一致するものを探します。<br>
-      ① 標本平均の期待値は \\(E[\\bar{X}] = \\mu\\) であり不偏推定量です。<br>
+      ① 標本平均の期待値は \\(\\mathrm{E}[\\bar{X}] = \\mu\\) であり不偏推定量です。<br>
       ② 期待値は \\(n\\mu\\) となり、不偏ではありません。<br>
-      ③ 重み付き平均の一種です。\\(E[\\sum_{i=1}^{n} i X_i] = \\mu \\sum_{i=1}^{n} i = \\mu \\frac{n(n+1)}{2}\\) となるため、係数を掛けたこの式も期待値は \\(\\mu\\) となり、不偏推定量です。<br>
+      ③ 重み付き平均の一種です。\\(\\mathrm{E}[\\sum_{i=1}^{n} i X_i] = \\mu \\sum_{i=1}^{n} i = \\mu \\frac{n(n+1)}{2}\\) となるため、係数を掛けたこの式も期待値は \\(\\mu\\) となり、不偏推定量です。<br>
       ④ 第1標本のみでも、その期待値は分布の平均 \\(\\mu\\) に一致するため、不偏推定量です。
     `
   },
@@ -76,7 +72,7 @@ const allQuestions = [
     question: `
       確率変数 \\(X_1, \\dots, X_n\\) は独立に平均 \\(\\mu\\)、分散 \\(\\sigma^2\\) の分布に従うとする。
       このとき、標本平均を \\(\\bar{X}\\) として、不偏分散 \\(S^2 = \\frac{1}{n-1} \\displaystyle\\sum_{i=1}^n (X_i - \\bar{X})^2\\) が \\(\\sigma^2\\) の不偏推定量であることを証明する。<br>
-      次の ① 〜 ③ に入る式の組み合わせとして適切なものはどれか。<br><br>
+      次の ア～ウ に入る式の組み合わせとして適切なものはどれか。<br><br>
       
       【証明の過程】<br>
       \\begin{align}
@@ -86,50 +82,50 @@ const allQuestions = [
        &\\qquad - 2(\\bar{X} - \\mu) \\displaystyle\\sum_{i=1}^n (X_i - \\mu) + \\displaystyle\\sum_{i=1}^n (\\bar{X} - \\mu)^2
       \\end{align}
       ここで、
-      \\begin{equation} \\displaystyle\\sum_{i=1}^n (X_i - \\mu)(\\bar{X} - \\mu) = \\text{①} \\end{equation}
+      \\begin{equation} \\displaystyle\\sum_{i=1}^n (X_i - \\mu)(\\bar{X} - \\mu) = \\boxed{\\text{ア}} \\end{equation}
       であることと、
       \\begin{equation}
-        Var(\\bar{X}) = E[(\\bar{X} - \\mu)^2] = \\text{②}
+        \\mathrm{Var}[\\bar{X}] = \\mathrm{E}[(\\bar{X} - \\mu)^2] = \\boxed{\\text{イ}}
       \\end{equation} 
       より、
       \\begin{equation}
-        E\\left[ \\displaystyle\\sum_{i=1}^n (X_i - \\bar{X})^2 \\right] = n Var(X_i) - n Var(\\bar{X}) = \\text{③}
+        \\mathrm{E}\\left[ \\displaystyle\\sum_{i=1}^n (X_i - \\bar{X})^2 \\right] = n Var(X_i) - n Var(\\bar{X}) = \\boxed{\\text{ウ}}
       \\end{equation}
       したがって、
       \\begin{equation}
-        E[S^2] = E\\left[ \\frac{1}{n-1} \\displaystyle\\sum_{i=1}^n (X_i - \\bar{X})^2 \\right] = \\sigma^2
+        \\mathrm{E}[S^2] = \\mathrm{E}\\left[ \\frac{1}{n-1} \\displaystyle\\sum_{i=1}^n (X_i - \\bar{X})^2 \\right] = \\sigma^2
       \\end{equation}  
       
       <table class='w-full border-collapse border border-slate-300 text-center text-sm'>
         <thead>
           <tr class='bg-slate-100'>
             <th class='border border-slate-300 p-1'></th>
-            <th class='border border-slate-300 p-1'>①</th>
-            <th class='border border-slate-300 p-1'>②</th>
-            <th class='border border-slate-300 p-1'>③</th>
+            <th class='border border-slate-300 p-1'>ア</th>
+            <th class='border border-slate-300 p-1'>イ</th>
+            <th class='border border-slate-300 p-1'>ウ</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class='border border-slate-300 p-1 bg-slate-50'>1</td>
+            <td class='border border-slate-300 p-1 bg-slate-50'>①</td>
             <td class='border border-slate-300 p-1'>\\(\\displaystyle\\sum_{i=1}^n (\\bar{X}-\\mu)^2\\)</td>
             <td class='border border-slate-300 p-1'>\\(\\sigma^2\\)</td>
             <td class='border border-slate-300 p-1'>\\(n\\sigma^2\\)</td>
           </tr>
           <tr>
-            <td class='border border-slate-300 p-1 bg-slate-50'>2</td>
+            <td class='border border-slate-300 p-1 bg-slate-50'>②</td>
             <td class='border border-slate-300 p-1'>\\(\\displaystyle\\sum_{i=1}^n (\\bar{X}-\\mu)^2\\)</td>
             <td class='border border-slate-300 p-1'>\\(\\displaystyle\\frac{\\sigma^2}{n}\\)</td>
             <td class='border border-slate-300 p-1'>\\((n-1)\\sigma^2\\)</td>
           </tr>
           <tr>
-            <td class='border border-slate-300 p-1 bg-slate-50'>3</td>
+            <td class='border border-slate-300 p-1 bg-slate-50'>③</td>
             <td class='border border-slate-300 p-1'>\\(n\\displaystyle\\sum_{i=1}^n (\\bar{X}-\\mu)^2\\)</td>
             <td class='border border-slate-300 p-1'>\\(\\sigma^2\\)</td>
             <td class='border border-slate-300 p-1'>\\(n\\sigma^2\\)</td>
           </tr>
           <tr>
-            <td class='border border-slate-300 p-1 bg-slate-50'>4</td>
+            <td class='border border-slate-300 p-1 bg-slate-50'>④</td>
             <td class='border border-slate-300 p-1'>\\(n\\displaystyle\\sum_{i=1}^n (\\bar{X}-\\mu)^2\\)</td>
             <td class='border border-slate-300 p-1'>\\(\\displaystyle\\frac{\\sigma^2}{n}\\)</td>
             <td class='border border-slate-300 p-1'>\\((n-1)\\sigma^2\\)</td>
@@ -137,13 +133,13 @@ const allQuestions = [
         </tbody>
       </table>
     `,
-    choices: ["1", "2", "3", "4"],
-    answer: "2",
+    choices: ["①", "②", "③", "④"],
+    answer: "②",
     explanation: `
       【解説】<br>
-      ①：\\(\\sum_{i=1}^n (X_i - \\mu) = n(\\bar{X} - \\mu)\\) となるため、展開すると \\(n(\\bar{X} - \\mu)^2\\) となります。これは項数で書き換えると \\(\\sum_{i=1}^n (\\bar{X} - \\mu)^2\\) と等価です。<br>
-      ②：標本平均の分散は元の分散の \\(1/n\\) になるため、\\(Var(\\bar{X}) = \\frac{\\sigma^2}{n}\\) です。<br>
-      ③：\\(E[\\sum (X_i - \\mu)^2] = n\\sigma^2\\) および \\(E[n(\\bar{X} - \\mu)^2] = n \\cdot \\frac{\\sigma^2}{n} = \\sigma^2\\) なので、それらの差は \\((n-1)\\sigma^2\\) となります。
+      ア：\\(\\display \\sum_{i=1}^n (X_i - \\mu) = n(\\bar{X} - \\mu)\\) となるため、展開すると \\(n(\\bar{X} - \\mu)^2\\) となります。これは項数で書き換えると \\(\\display \\sum_{i=1}^n (\\bar{X} - \\mu)^2\\) と等価です。<br>
+      イ：標本平均の分散は元の分散の \\(1/n\\) になるため、\\(\\mathrm{Var}[\\bar{X}] = \\frac{\\sigma^2}{n}\\) です。<br>
+      ウ：\\(\\mathrm{E}\\left[\\display \\sum (X_i - \\mu)^2 \\right] = n\\sigma^2\\) および \\(\\mathrm{E}[n(\\bar{X} - \\mu)^2] = n \\cdot \\frac{\\sigma^2}{n} = \\sigma^2\\) なので、それらの差は \\((n-1)\\sigma^2\\) となります。
     `
   }
 ];
