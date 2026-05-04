@@ -137,9 +137,9 @@ const allQuestions = [
     answer: "②",
     explanation: `
       【解説】<br>
-      ア：\\(\\display \\sum_{i=1}^n (X_i - \\mu) = n(\\bar{X} - \\mu)\\) となるため、展開すると \\(n(\\bar{X} - \\mu)^2\\) となります。これは項数で書き換えると \\(\\display \\sum_{i=1}^n (\\bar{X} - \\mu)^2\\) と等価です。<br>
+      ア：\\( \\sum_{i=1}^n (X_i - \\mu) = n(\\bar{X} - \\mu)\\) となるため、展開すると \\(n(\\bar{X} - \\mu)^2\\) となります。これは項数で書き換えると \\( \\sum_{i=1}^n (\\bar{X} - \\mu)^2\\) と等価です。<br>
       イ：標本平均の分散は元の分散の \\(1/n\\) になるため、\\(\\mathrm{Var}[\\bar{X}] = \\frac{\\sigma^2}{n}\\) です。<br>
-      ウ：\\(\\mathrm{E}\\left[\\display \\sum (X_i - \\mu)^2 \\right] = n\\sigma^2\\) および \\(\\mathrm{E}[n(\\bar{X} - \\mu)^2] = n \\cdot \\frac{\\sigma^2}{n} = \\sigma^2\\) なので、それらの差は \\((n-1)\\sigma^2\\) となります。
+      ウ：\\(\\mathrm{E}\\left[\\sum (X_i - \\mu)^2 \\right] = n\\sigma^2\\) および \\(\\mathrm{E}[n(\\bar{X} - \\mu)^2] = n \\cdot \\frac{\\sigma^2}{n} = \\sigma^2\\) なので、それらの差は \\((n-1)\\sigma^2\\) となります。
     `
   }
 ];
