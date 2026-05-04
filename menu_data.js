@@ -16,7 +16,7 @@ const menuData = [
         hasSubMenu: true,
         subItems: [
             { name: "不偏推定", genre: "unbiased" },
-            { name: "仮説検定", genre: "hypothesis_testing" }
+            { name: "仮説検定", genre: "hypothesis" }
         ]
     },
     {
