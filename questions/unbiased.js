@@ -71,7 +71,11 @@ const allQuestions = [
     type: "選択式",
     question: `
       確率変数 \\(X_1, \\dots, X_n\\) は独立に平均 \\(\\mu\\)、分散 \\(\\sigma^2\\) の分布に従うとする。
-      このとき、標本平均を \\(\\bar{X}\\) として、不偏分散 \\(S^2 = \\frac{1}{n-1} \\displaystyle\\sum_{i=1}^n (X_i - \\bar{X})^2\\) が \\(\\sigma^2\\) の不偏推定量であることを証明する。<br>
+      このとき、標本平均を \\(\\bar{X}\\) として、不偏分散 
+      \\begin{equation}
+      S^2 = \\frac{1}{n-1} \\displaystyle\\sum_{i=1}^n (X_i - \\bar{X})^2
+      \\end{equation}
+      が \\(\\sigma^2\\) の不偏推定量であることを証明する。<br>
       次の ア～ウ に入る式の組み合わせとして適切なものはどれか。<br><br>
       
       【証明の過程】<br>

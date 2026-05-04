@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +14,22 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        #ai-chat-history::-webkit-scrollbar { width: 4px; }
-        #ai-chat-history::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        #ai-chat-history::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #ai-chat-history::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
     </style>
 </head>
+
 <body class="bg-slate-50 min-h-screen flex items-center justify-center p-4">
 
-    <div class="max-w-2xl w-full bg-white rounded-2xl shadow-xl shadow-slate-200 overflow-hidden border border-slate-100">
-        
+    <div
+        class="max-w-2xl w-full bg-white rounded-2xl shadow-xl shadow-slate-200 overflow-hidden border border-slate-100">
+
         <div class="bg-blue-600 p-6">
             <div class="flex justify-between items-center mb-4">
                 <h1 class="text-white text-xl font-bold flex items-center gap-2">
@@ -30,55 +39,66 @@
                 <div id="priorityContainer" class="flex gap-1 text-amber-300"></div>
             </div>
             <div class="w-full bg-blue-800 rounded-full h-2">
-                <div id="progressBar" class="bg-emerald-400 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                <div id="progressBar" class="bg-emerald-400 h-2 rounded-full transition-all duration-500"
+                    style="width: 0%"></div>
             </div>
         </div>
 
         <div class="p-8">
             <div id="difficultyContainer" class="flex items-center gap-2 mb-4"></div>
-    
-            <div id="questionText" class="text-slate-700 text-lg leading-relaxed mb-6"></div>
-            
-            <!-- 統計数値表マルチタブセクション -->
-<div class="mb-6 border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm">
-    <button type="button" 
-            onclick="document.getElementById('statsTableContainer').classList.toggle('hidden')" 
-            class="w-full flex justify-between items-center p-3 bg-slate-50 hover:bg-slate-100 transition-all border-b border-slate-200">
-        <span class="text-sm font-bold text-slate-700 flex items-center gap-2">
-            📊 統計数値表（分布別）を確認
-        </span>
-        <span class="text-[10px] text-slate-400 bg-white px-2 py-1 rounded border border-slate-200 uppercase font-bold">Show / Hide</span>
-    </button>
-    
-    <!-- ここに ID "statsTableContainer" を設定 -->
-    <div id="statsTableContainer" class="hidden p-4 bg-slate-50">
-        <!-- タブボタン -->
-        <div class="flex gap-2 mb-3 overflow-x-auto pb-1">
-            <button type="button" onclick="switchTable('z')" id="tab-z" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-full">正規分布</button>
-            <button type="button" onclick="switchTable('t')" id="tab-t" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-full">t分布</button>
-            <button type="button" onclick="switchTable('chi')" id="tab-chi" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-full">χ²分布</button>
-            <button type="button" onclick="switchTable('f')" id="tab-f" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-full">F分布</button>
-        </div>
 
-        <!-- 画像表示エリア -->
-        <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-inner">
-            <img id="displayStatsTable" src="" alt="統計数値表" class="w-full h-auto rounded hidden">
-        </div>
-        <p id="tableDescription" class="text-[10px] text-slate-500 mt-2 px-1"></p>
-    </div>
-</div>
+            <div id="questionText" class="text-slate-700 text-lg leading-relaxed mb-6"></div>
+
+            <!-- 統計数値表マルチタブセクション -->
+            <div class="mb-6 border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                <button type="button"
+                    onclick="document.getElementById('statsTableContainer').classList.toggle('hidden')"
+                    class="w-full flex justify-between items-center p-3 bg-slate-50 hover:bg-slate-100 transition-all border-b border-slate-200">
+                    <span class="text-sm font-bold text-slate-700 flex items-center gap-2">
+                        統計数値表を確認
+                    </span>
+                    <span
+                        class="text-[10px] text-slate-400 bg-white px-2 py-1 rounded border border-slate-200 uppercase font-bold">Show
+                        / Hide</span>
+                </button>
+
+                <!-- ここに ID "statsTableContainer" を設定 -->
+                <div id="statsTableContainer" class="hidden p-4 bg-slate-50">
+                    <!-- タブボタン -->
+                    <div class="flex gap-2 mb-3 overflow-x-auto pb-1">
+                        <button type="button" onclick="switchTable('z')" id="tab-z"
+                            class="tab-btn px-3 py-1.5 text-xs font-bold rounded-full">正規分布</button>
+                        <button type="button" onclick="switchTable('t')" id="tab-t"
+                            class="tab-btn px-3 py-1.5 text-xs font-bold rounded-full">t分布</button>
+                        <button type="button" onclick="switchTable('chi')" id="tab-chi"
+                            class="tab-btn px-3 py-1.5 text-xs font-bold rounded-full">χ²分布</button>
+                        <button type="button" onclick="switchTable('f')" id="tab-f"
+                            class="tab-btn px-3 py-1.5 text-xs font-bold rounded-full">F分布</button>
+                    </div>
+
+                    <!-- 画像表示エリア -->
+                    <div class="bg-white p-2 rounded-lg border border-slate-200 shadow-inner">
+                        <img id="displayStatsTable" src="" alt="統計数値表" class="w-full h-auto rounded hidden">
+                    </div>
+                    <p id="tableDescription" class="text-[10px] text-slate-500 mt-2 px-1"></p>
+                </div>
+            </div>
 
             <div id="answerArea" class="grid grid-cols-1 gap-3 mb-6"></div>
-              
+
             <div class="mt-8 border-t border-slate-100 pt-6">
                 <div class="bg-blue-50 rounded-2xl p-4 border border-blue-100">
                     <h3 class="text-blue-800 font-bold text-sm mb-3 flex items-center gap-2">お助けAIパートナー</h3>
-                    <div id="ai-chat-history" class="max-h-48 overflow-y-auto mb-4 space-y-3 p-2 bg-white/50 rounded-lg text-sm text-slate-600">
+                    <div id="ai-chat-history"
+                        class="max-h-48 overflow-y-auto mb-4 space-y-3 p-2 bg-white/50 rounded-lg text-sm text-slate-600">
                         <div class="italic text-slate-500">「ヒントが必要な時は何でも聞いてくださいね！」</div>
                     </div>
                     <div class="flex gap-2">
-                        <input type="text" id="userQuestion" class="flex-grow p-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" placeholder="例：この記号の意味は？">
-                        <button onclick="askAI()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl text-sm font-bold transition-all">質問</button>
+                        <input type="text" id="userQuestion"
+                            class="flex-grow p-3 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
+                            placeholder="例：この記号の意味は？">
+                        <button onclick="askAI()"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl text-sm font-bold transition-all">質問</button>
                     </div>
                     <div id="loading" class="hidden text-xs text-blue-500 mt-2 ml-1 animate-pulse">AI思考中...</div>
                 </div>
@@ -89,10 +109,11 @@
                 <div id="explanation" class="text-slate-700 text-sm leading-relaxed"></div>
             </div>
 
-            <button onclick="nextQuestion()" id="nextBtn" class="hidden mt-6 w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-[0.98]">
+            <button onclick="nextQuestion()" id="nextBtn"
+                class="hidden mt-6 w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-[0.98]">
                 次の問題へ進む
             </button>
-        </div> 
+        </div>
     </div>
 
     <script id="dataScript"></script>
@@ -114,7 +135,7 @@
             // 動的にスクリプトタグを作成して読み込む
             const script = document.getElementById('dataScript');
             script.src = `questions/${genre}.js`;
-            
+
             script.onload = () => {
                 // genre.jsが読み込まれると、グローバル変数 allQuestions が使えるようになる
                 if (typeof allQuestions !== 'undefined' && allQuestions.length > 0) {
@@ -133,101 +154,101 @@
             };
         };
 
-         // 統計表の設定（一括管理）
-    const STATS_TABLE_CONFIG = {
-        'z': { img: 'picture/normal_dist.png', desc: '※ 表の数値は上側確率 \\( P(Z \\geq z) \\) を表しています。' },
-        't': { img: 'picture/t_distribution_table.png', desc: '※ 表の数値は上側確率 \\( P(T > t) \\) を表しています。' },
-        'chi': { img: 'picture/chi_square_table.png', desc: '※ 表の数値は上側確率 \\( P(\\chi^2 > x) \\) を表しています。' },
-        'f': { img: 'picture/f_distribution_table.png', desc: '※ 表の数値は上側確率 \\( P(F > f) \\) を表しています。' }
-    };
+        // 統計表の設定（一括管理）
+        const STATS_TABLE_CONFIG = {
+            'z': { img: 'picture/normal_distribution_table.png', desc: '※ 表の数値は上側確率 \\( P(Z \\geq z) \\) を表しています。' },
+            't': { img: 'picture/t_distribution_table.png', desc: '※ 表の数値は上側確率 \\( P(T > t) \\) を表しています。' },
+            'chi': { img: 'picture/chi_square_table.png', desc: '※ 表の数値は上側確率 \\( P(\\chi^2 > x) \\) を表しています。' },
+            'f': { img: 'picture/f_distribution_table.png', desc: '※ 表の数値は上側確率 \\( P(F > f) \\) を表しています。' }
+        };
 
-    function switchTable(type) {
-        const config = STATS_TABLE_CONFIG[type];
-        const imgElement = document.getElementById('displayStatsTable');
-        const descElement = document.getElementById('tableDescription');
-        const buttons = document.querySelectorAll('.tab-btn');
+        function switchTable(type) {
+            const config = STATS_TABLE_CONFIG[type];
+            const imgElement = document.getElementById('displayStatsTable');
+            const descElement = document.getElementById('tableDescription');
+            const buttons = document.querySelectorAll('.tab-btn');
 
-        if (!config || !imgElement) return;
+            if (!config || !imgElement) return;
 
-        // ボタンのデザイン更新
-        buttons.forEach(btn => {
-            const isActive = btn.id === `tab-${type}`;
-            btn.className = `tab-btn px-3 py-1.5 text-xs font-bold rounded-full ${isActive ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-slate-500 border border-slate-200'}`;
-        });
-
-        // 画像と説明の更新
-        imgElement.src = config.img;
-        imgElement.classList.remove('hidden');
-        descElement.innerHTML = config.desc;
-
-        if (window.MathJax) MathJax.typesetPromise([descElement]);
-    }
-
-    function renderQuestion(q) {
-        currentQuestion = q;
-
-        // 1. 統計表パネルを閉じる処理
-        const statsContainer = document.getElementById('statsTableContainer');
-        if (statsContainer) {
-            statsContainer.classList.add('hidden');
-        }
-
-        // 2. 初期表示を正規分布(z)にリセット
-        if (typeof switchTable === "function") {
-            switchTable('z');
-        }
-
-        // --- 以下、既存のレンダリング処理 ---
-        const progress = ((currentIndex + 1) / allQuestions.length) * 100;
-        document.getElementById("progressBar").style.width = `${progress}%`;
-        document.getElementById("priorityContainer").innerHTML = '重要度:' + '★'.repeat(q.priority || 0);
-
-        const difficultyContainer = document.getElementById("difficultyContainer");
-        const diffs = { 1: ["基礎", "bg-emerald-100 text-emerald-700"], 2: ["標準", "bg-blue-100 text-blue-700"], 3: ["応用", "bg-rose-100 text-rose-700"] };
-        const [label, color] = diffs[q.difficulty] || diffs[2];
-        difficultyContainer.innerHTML = `<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">難易度</span><span class="${color} px-2 py-0.5 rounded text-xs font-bold">${label}</span>`;
-
-        document.getElementById("questionId").innerText = `Q${q.id}`;
-        document.getElementById("categoryName").innerText = q.category;
-        
-        const replaceImage = (text) => text.replace(/!\[.*?\]\((.*?)\)/g, '<img src="$1" class="w-full h-auto rounded-xl my-4 shadow-sm border border-slate-200">');
-        
-        document.getElementById("questionText").innerHTML = replaceImage(q.question);
-        document.getElementById("explanationContainer").classList.add("hidden");
-        document.getElementById("nextBtn").classList.add("hidden");
-
-        const ansContainer = document.getElementById("answerArea");
-        ansContainer.innerHTML = ""; 
-
-        if (q.type === "選択式") {
-            q.choices.forEach(choice => {
-                const btn = document.createElement("button");
-                btn.className = "w-full p-4 text-left border-2 border-slate-200 rounded-xl hover:bg-blue-50 hover:border-blue-500 transition-all duration-200";
-                btn.innerHTML = choice; 
-                btn.onclick = () => checkAnswer(choice, btn);
-                ansContainer.appendChild(btn);
+            // ボタンのデザイン更新
+            buttons.forEach(btn => {
+                const isActive = btn.id === `tab-${type}`;
+                btn.className = `tab-btn px-3 py-1.5 text-xs font-bold rounded-full ${isActive ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-slate-500 border border-slate-200'}`;
             });
-        } else if (q.type === "回答式") {
-            const wrapper = document.createElement("div");
-            wrapper.className = "flex flex-col gap-3";
-            wrapper.innerHTML = `
+
+            // 画像と説明の更新
+            imgElement.src = config.img;
+            imgElement.classList.remove('hidden');
+            descElement.innerHTML = config.desc;
+
+            if (window.MathJax) MathJax.typesetPromise([descElement]);
+        }
+
+        function renderQuestion(q) {
+            currentQuestion = q;
+
+            // 1. 統計表パネルを閉じる処理
+            const statsContainer = document.getElementById('statsTableContainer');
+            if (statsContainer) {
+                statsContainer.classList.add('hidden');
+            }
+
+            // 2. 初期表示を正規分布(z)にリセット
+            if (typeof switchTable === "function") {
+                switchTable('z');
+            }
+
+            // --- 以下、既存のレンダリング処理 ---
+            const progress = ((currentIndex + 1) / allQuestions.length) * 100;
+            document.getElementById("progressBar").style.width = `${progress}%`;
+            document.getElementById("priorityContainer").innerHTML = '重要度:' + '★'.repeat(q.priority || 0);
+
+            const difficultyContainer = document.getElementById("difficultyContainer");
+            const diffs = { 1: ["基礎", "bg-emerald-100 text-emerald-700"], 2: ["標準", "bg-blue-100 text-blue-700"], 3: ["応用", "bg-rose-100 text-rose-700"] };
+            const [label, color] = diffs[q.difficulty] || diffs[2];
+            difficultyContainer.innerHTML = `<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">難易度</span><span class="${color} px-2 py-0.5 rounded text-xs font-bold">${label}</span>`;
+
+            document.getElementById("questionId").innerText = `Q${q.id}`;
+            document.getElementById("categoryName").innerText = q.category;
+
+            const replaceImage = (text) => text.replace(/!\[.*?\]\((.*?)\)/g, '<img src="$1" class="w-full h-auto rounded-xl my-4 shadow-sm border border-slate-200">');
+
+            document.getElementById("questionText").innerHTML = replaceImage(q.question);
+            document.getElementById("explanationContainer").classList.add("hidden");
+            document.getElementById("nextBtn").classList.add("hidden");
+
+            const ansContainer = document.getElementById("answerArea");
+            ansContainer.innerHTML = "";
+
+            if (q.type === "選択式") {
+                q.choices.forEach(choice => {
+                    const btn = document.createElement("button");
+                    btn.className = "w-full p-4 text-left border-2 border-slate-200 rounded-xl hover:bg-blue-50 hover:border-blue-500 transition-all duration-200";
+                    btn.innerHTML = choice;
+                    btn.onclick = () => checkAnswer(choice, btn);
+                    ansContainer.appendChild(btn);
+                });
+            } else if (q.type === "回答式") {
+                const wrapper = document.createElement("div");
+                wrapper.className = "flex flex-col gap-3";
+                wrapper.innerHTML = `
                 <input type="text" id="answerInput" placeholder="回答を入力..." class="w-full p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 outline-none">
                 <button onclick="checkAnswer(document.getElementById('answerInput').value.trim(), document.getElementById('answerInput'))" class="w-full p-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700">解答を確定</button>
             `;
-            ansContainer.appendChild(wrapper);
+                ansContainer.appendChild(wrapper);
+            }
+
+            if (window.MathJax) MathJax.typesetPromise();
         }
 
-        if (window.MathJax) MathJax.typesetPromise();
-    }
 
-      
 
         function checkAnswer(submittedValue, element) {
             if (!document.getElementById("nextBtn").classList.contains("hidden")) return;
 
             const isCorrect = (submittedValue === currentQuestion.answer);
             const container = document.getElementById("answerArea");
-            
+
             // 選択式ボタンの全無効化
             const buttons = container.querySelectorAll("button");
             buttons.forEach(b => b.disabled = true);
@@ -242,100 +263,101 @@
             // 解説表示
             const replaceImage = (text) => text.replace(/!\[.*?\]\((.*?)\)/g, '<img src="$1" class="w-full h-auto rounded-xl my-4 shadow-sm border border-slate-200">');
             document.getElementById("explanation").innerHTML = replaceImage(currentQuestion.explanation || "解説なし");
-            document.getElementById("explanationContainer").classList.remove("hidden"); 
+            document.getElementById("explanationContainer").classList.remove("hidden");
             document.getElementById("nextBtn").classList.remove("hidden");
 
             if (window.MathJax) MathJax.typesetPromise();
         }
 
         async function askAI() {
-    const input = document.getElementById("userQuestion");
-    const question = input.value.trim();
-    const historyDiv = document.getElementById("ai-chat-history");
-    const loadingDiv = document.getElementById("loading");
+            const input = document.getElementById("userQuestion");
+            const question = input.value.trim();
+            const historyDiv = document.getElementById("ai-chat-history");
+            const loadingDiv = document.getElementById("loading");
 
-    // バリデーション
-    if (!question) return;
-    if (typeof currentQuestion === 'undefined' || !currentQuestion) {
-        alert("問題データが読み込まれていません。");
-        return;
-    }
+            // バリデーション
+            if (!question) return;
+            if (typeof currentQuestion === 'undefined' || !currentQuestion) {
+                alert("問題データが読み込まれていません。");
+                return;
+            }
 
-    // UI更新（ユーザー側の吹き出しデザイン）
-    historyDiv.innerHTML += `<div class="text-right ml-8"><div class="inline-block bg-blue-600 text-white p-2 rounded-lg mb-2 text-sm">${question}</div></div>`;
-    input.value = "";
-    loadingDiv.classList.remove("hidden");
-    historyDiv.scrollTop = historyDiv.scrollHeight;
+            // UI更新（ユーザー側の吹き出しデザイン）
+            historyDiv.innerHTML += `<div class="text-right ml-8"><div class="inline-block bg-blue-600 text-white p-2 rounded-lg mb-2 text-sm">${question}</div></div>`;
+            input.value = "";
+            loadingDiv.classList.remove("hidden");
+            historyDiv.scrollTop = historyDiv.scrollHeight;
 
-    // Supabase Edge Functionへ送るプロンプトの構成
-    const prompt = `あなたは統計検定2級の学習を支援する優秀なメンターです。
+            // Supabase Edge Functionへ送るプロンプトの構成
+            const prompt = `あなたは統計検定2級の学習を支援する優秀なメンターです。
 【現在の問題】: ${currentQuestion.question}
 【正解の根拠】: ${currentQuestion.explanation || "未設定"}
 ユーザーからの質問: "${question}"
 回答ルール: 正解は言わず、数学的ヒントを提示してください。
 回答は読みやすいMarkdown形式で行い、重要な数式は 独立した行（Display Mode） で記述してください。また、一行が長くなりすぎないよう適切に改行してください。`;
 
-    try {
-        // Supabase Edge Functionを呼び出し（APIキーは不要、URLはあなたのプロジェクトのもの）
-        const response = await fetch('https://ceaslesrkikugqvfwfmd.supabase.co/functions/v1/gemini-chat', {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt: prompt })
-        });
-        
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || "通信エラーが発生しました");
-        }
+            try {
+                // Supabase Edge Functionを呼び出し（APIキーは不要、URLはあなたのプロジェクトのもの）
+                const response = await fetch('https://ceaslesrkikugqvfwfmd.supabase.co/functions/v1/gemini-chat', {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ prompt: prompt })
+                });
 
-        const result = await response.json();
-        
-        // AIの回答を表示（提示されたグレー背景のデザイン）
-        if (result.answer) {
-            let aiText = result.answer;
-            // $...$ 形式の数式を MathJax 用に変換
-            aiText = aiText.replace(/\$(.*?)\$/g, '\\($1\\)');
-            
-            historyDiv.innerHTML += `<div class="bg-slate-100 p-3 rounded-lg text-slate-800 mb-2 border border-slate-200"><b>AIパートナー:</b><br>${aiText}</div>`;
-        } else {
-            historyDiv.innerHTML += `<div class="text-rose-500 text-xs p-2">AIが回答を生成できませんでした（ポリシー制限等）。</div>`;
-        }
-        
-        // 数式のレンダリング
-        if (window.MathJax) { 
-            await MathJax.typesetPromise([historyDiv]); 
-        }
-        historyDiv.scrollTop = historyDiv.scrollHeight;
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || "通信エラーが発生しました");
+                }
 
-    } catch (e) {
-        console.error("AskAI Error:", e);
-        historyDiv.innerHTML += `<div class="text-rose-500 text-xs p-2">エラー: ${e.message}</div>`;
-    } finally {
-        loadingDiv.classList.add("hidden");
-        historyDiv.scrollTop = historyDiv.scrollHeight;
-    }
-}
+                const result = await response.json();
+
+                // AIの回答を表示（提示されたグレー背景のデザイン）
+                if (result.answer) {
+                    let aiText = result.answer;
+                    // $...$ 形式の数式を MathJax 用に変換
+                    aiText = aiText.replace(/\$(.*?)\$/g, '\\($1\\)');
+
+                    historyDiv.innerHTML += `<div class="bg-slate-100 p-3 rounded-lg text-slate-800 mb-2 border border-slate-200"><b>AIパートナー:</b><br>${aiText}</div>`;
+                } else {
+                    historyDiv.innerHTML += `<div class="text-rose-500 text-xs p-2">AIが回答を生成できませんでした（ポリシー制限等）。</div>`;
+                }
+
+                // 数式のレンダリング
+                if (window.MathJax) {
+                    await MathJax.typesetPromise([historyDiv]);
+                }
+                historyDiv.scrollTop = historyDiv.scrollHeight;
+
+            } catch (e) {
+                console.error("AskAI Error:", e);
+                historyDiv.innerHTML += `<div class="text-rose-500 text-xs p-2">エラー: ${e.message}</div>`;
+            } finally {
+                loadingDiv.classList.add("hidden");
+                historyDiv.scrollTop = historyDiv.scrollHeight;
+            }
+        }
 
         function nextQuestion() {
-    currentIndex++;
-    
-    if (currentIndex < allQuestions.length) {
-        // まだ問題がある場合は次の問題を表示
-        renderQuestion(allQuestions[currentIndex]);
-    } else {
-        
-        // 現在のURLからジャンル名を取得
-        const params = new URLSearchParams(window.location.search);
-        const genre = params.get('genre');
+            currentIndex++;
 
-        // ジャンルを引き継いで解説ページへ遷移
-        if (genre) {
-            window.location.href = `Explanation.html?genre=${genre}`;
-        } else {
-            window.location.href = 'index.html';
+            if (currentIndex < allQuestions.length) {
+                // まだ問題がある場合は次の問題を表示
+                renderQuestion(allQuestions[currentIndex]);
+            } else {
+
+                // 現在のURLからジャンル名を取得
+                const params = new URLSearchParams(window.location.search);
+                const genre = params.get('genre');
+
+                // ジャンルを引き継いで解説ページへ遷移
+                if (genre) {
+                    window.location.href = `Explanation.html?genre=${genre}`;
+                } else {
+                    window.location.href = 'index.html';
+                }
+            }
         }
-    }
-}
     </script>
 </body>
+
 </html>
