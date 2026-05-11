@@ -25,9 +25,8 @@ const menuData = [
         description: "正規分布、二項分布など",
         hasSubMenu: true,
         subItems: [
-            { name: "二項分布", genre: "binomial" },
-            { name: "幾何分布", genre: "geo" },   
-            { name: "正規分布", genre: "normal"}
+            { name: "離散型確率分布", genre: "discrete"},
+            { name: "連続型確率分布", genre: "continuous"}
         ]
     }
 ];
